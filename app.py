@@ -14,14 +14,16 @@ class Todo(db.Model):
     complete = db.Column(db.Boolean)
 
 
-@app.route('/')
-def home():
-    return 'Hi Everyone :)'
-
-
-@app.route('/base')
+@app.route('/edit')
 def home1():
-    return render_template("base.html")
+    todo_list = Todo.query.all()
+    return render_template("base.html", todo_list=todo_list)
+
+
+@app.route('/')
+def list1():
+    todo_list = Todo.query.all()
+    return render_template("base.html", todo_list=todo_list)
 
 
 if __name__ == "__main__":
